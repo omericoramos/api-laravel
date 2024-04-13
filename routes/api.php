@@ -13,5 +13,6 @@ Route::prefix('v1')->group(function () {
     Route::get('/user/{user}', [UserController::class,'show'])->name('users.show');
     Route::get('/user/edit/{user}', [UserController::class,'edit'])->name('users.edit');
     Route::put('/user/update/{user}', [UserController::class,'update'])->name('users.update');
-    // Route::post('/user', [UserController::class,'store'])->name('users.store');
+    Route::delete('/user/{user}', [UserController::class,'destroy'])->name('users.destroy');
+    Route::post('/user', [UserController::class,'store'])->name('users.store');
 });
