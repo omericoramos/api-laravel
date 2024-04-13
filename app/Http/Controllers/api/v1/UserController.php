@@ -50,17 +50,25 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        if($userData = new UserResource($user)) {
+            return $userData;
+        }
+
+        response()->json([
+            'message' => 'Usuário não encontrado!'
+        ], 404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    function update(Request $request, User $user){
+        $user->update([
+            'first_name' => $request->data['firstName'],
+            'last_name' => $request->data['lastName'],
+            'email' => $request->data['email']
+        ]);
+
+        return new UserResource($user);
     }
 
     /**

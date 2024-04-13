@@ -11,5 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::get('/users', [UserController::class,'index'])->name('users.index');
     Route::get('/user/{user}', [UserController::class,'show'])->name('users.show');
-    Route::post('/user', [UserController::class,'store'])->name('users.store');
+    Route::get('/user/edit/{user}', [UserController::class,'edit'])->name('users.edit');
+    Route::put('/user/update/{user}', [UserController::class,'update'])->name('users.update');
+    // Route::post('/user', [UserController::class,'store'])->name('users.store');
 });
