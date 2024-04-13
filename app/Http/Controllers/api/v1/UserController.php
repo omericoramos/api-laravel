@@ -43,20 +43,28 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user) {
-       return new UserResource($user);
+    public function show(string $id) {
+        
+        if($user = User::find($id)) {
+
+            return new UserResource($user);
+        }
+
+        return response()->json([
+            'message' => 'Usuário não encontrado!'
+        ], 404);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(string $id)
     {
-        if($userData = new UserResource($user)) {
-            return $userData;
+        if($user = User::find($id)) {
+            return new UserResource($user);
         }
 
-        response()->json([
+        return response()->json([
             'message' => 'Usuário não encontrado!'
         ], 404);
     }
